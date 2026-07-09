@@ -1,8 +1,8 @@
 import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import Link from 'next/next-link'; 
+import HomeClient from './HomeClient';
 
-// Mocking the data structure that will come from your easy visual admin dashboard
+// Mocking the data layout structure from the original dashboard store
 const dishes = [
   {
     id: '1',
@@ -38,75 +38,137 @@ const dishes = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#FFFDF9] text-[#2C1A11]">
-      {/* Header */}
-      <header className="border-b border-[#F0E6DF] bg-white sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
-        <div>
-          <h1 className="font-serif text-2xl font-bold tracking-wide text-[#E05320]">Lahori Samosay</h1>
-          <p className="text-xs tracking-widest uppercase text-gray-500">Authentic Street Food</p>
-        </div>
-        <nav className="flex gap-6 font-medium text-sm">
-          <Link href="#" className="text-[#E05320]">Home</Link>
-          <Link href="#" className="hover:text-[#E05320]">Menu</Link>
-          <Link href="#" className="hover:text-[#E05320]">Samosas</Link>
-          <Link href="#" className="hover:text-[#E05320]">Biryanis</Link>
-        </nav>
-      </header>
+    <div className="min-h-screen bg-[#FFFDF9] text-[#2C1A11] flex flex-col justify-between">
+      <div>
+        {/* Main Brand Navigation Header */}
+        <header className="border-b border-[#F0E6DF] bg-white sticky top-0 z-50 px-6 py-4 flex justify-between items-center max-w-7xl mx-auto w-full">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">🥟</span>
+            <div>
+              <h1 className="font-serif text-xl font-bold tracking-wide text-[#E05320]">Lahori Samosay</h1>
+              <p className="text-[10px] tracking-widest uppercase text-gray-400 font-semibold">Authentic Street Food</p>
+            </div>
+          </div>
+          
+          <nav className="hidden md:flex gap-8 font-medium text-sm text-gray-700">
+            <a href="#" className="text-[#E05320] transition-colors">Home</a>
+            <a href="#" className="hover:text-[#E05320] transition-colors">Menu</a>
+            <a href="#" className="hover:text-[#E05320] transition-colors">Samosas</a>
+            <a href="#" className="hover:text-[#E05320] transition-colors">Biryanis</a>
+          </nav>
 
-      {/* Main Grid Section */}
-      <main className="max-w-7xl mx-auto px-6 py-10">
-        <div className="flex justify-between items-center mb-8">
-          <p className="text-sm font-medium text-gray-500">Showing {dishes.length} premium dishes</p>
-          <div className="flex gap-3">
-            <button className="px-4 py-2 border border-[#E6DCD5] rounded-full text-sm font-medium bg-white hover:bg-gray-50">Filters</button>
-            <button className="px-4 py-2 border border-[#E6DCD5] rounded-full text-sm font-medium bg-white hover:bg-gray-50">Featured ▾</button>
+          <div className="flex items-center gap-4 text-gray-600">
+            <button className="p-1 hover:text-[#E05320]">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </button>
+            <button className="p-1 hover:text-[#E05320]">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 11h14l1 12H4L5 11z"></path></svg>
+            </button>
+          </div>
+        </header>
+
+        {/* Brown Hero Banner Section */}
+        <section className="bg-[#4A3525] text-white py-16 px-6">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-3">Our Full Menu</h2>
+            <p className="text-gray-300 text-lg max-w-xl">Explore our complete collection of authentic Lahori dishes</p>
+          </div>
+        </section>
+
+        {/* Search Bar Container */}
+        <div className="max-w-7xl mx-auto px-6 mt-8">
+          <div className="flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between border-b border-[#F0E6DF] pb-6">
+            <div className="relative flex-1 max-w-md">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+              </span>
+              <input 
+                type="text" 
+                placeholder="Search dishes..." 
+                className="w-full pl-10 pr-4 py-2 bg-white border border-[#D0C2B7] rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-[#E05320] focus:border-[#E05320]"
+              />
+            </div>
+            
+            <div className="flex gap-3">
+              <button className="px-4 py-2 border border-[#D0C2B7] bg-white rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-gray-50">
+                <span>📊</span> Filters
+              </button>
+              <select className="px-4 py-2 border border-[#D0C2B7] bg-white rounded-lg text-sm font-medium focus:outline-none">
+                <option>Featured</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+              </select>
+            </div>
           </div>
         </div>
 
-        {/* Responsive Layout Grid identical to Arena */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {dishes.map((dish) => (
-            <div key={dish.id} className="group bg-white border border-[#EDE4DC] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 relative flex flex-col">
-              {/* Product Badge */}
-              {dish.badge && (
-                <span className="absolute top-3 left-3 z-10 bg-[#E05320] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">
-                  {dish.badge}
-                </span>
-              )}
+        {/* Client Side Filter Grid Mounting Component */}
+        <main className="max-w-7xl mx-auto px-6 py-8">
+          <HomeClient products={dishes} categories={['All', 'Samosas', 'Biryanis']} />
+        </main>
+      </div>
 
-              {/* Food Image Wrapper */}
-              <div className="relative aspect-square w-full bg-gray-100 overflow-hidden">
-                <img 
-                  src={dish.image} 
-                  alt={dish.name}
-                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              {/* Card Details */}
-              <div className="p-5 flex flex-col flex-grow">
-                <span className="text-[11px] font-bold tracking-widest uppercase text-[#B58A63] mb-1">{dish.category}</span>
-                <h3 className="font-serif text-base font-bold leading-snug mb-2 group-hover:text-[#E05320] transition-colors">{dish.name}</h3>
-                
-                {/* Ratings */}
-                <div className="flex items-center gap-1 mb-4 text-sm">
-                  <span className="text-amber-500">★</span>
-                  <span className="font-bold text-xs">{dish.rating}</span>
-                  <span className="text-gray-400 text-xs">({dish.reviews})</span>
-                </div>
-
-                {/* Price and Action Button */}
-                <div className="mt-auto pt-3 border-t border-[#FAFAFA] flex justify-between items-center">
-                  <span className="text-lg font-extrabold text-[#2C1A11]">${dish.price.toFixed(2)}</span>
-                  <button className="bg-[#2C1A11] hover:bg-[#E05320] text-white text-xs font-bold tracking-wider uppercase px-4 py-2.5 rounded-xl transition-colors shadow-sm">
-                    Add to Cart
-                  </button>
-                </div>
+      {/* Dark Brand Footer Section */}
+      <footer className="bg-[#332218] text-[#F5EBE6] pt-16 pb-8 px-6 mt-20 border-t-4 border-[#E05320]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-2xl">🥟</span>
+              <div>
+                <h3 className="font-serif font-bold text-lg text-white">Lahori Samosay</h3>
+                <p className="text-[9px] tracking-widest uppercase text-[#D29075]">Authentic Street Food</p>
               </div>
             </div>
-          ))}
+            <p className="text-sm text-gray-400 leading-relaxed">
+              Bringing the authentic flavors of Lahore's legendary food streets to your doorstep. Handcrafted with love, tradition, and the finest spices.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-sm uppercase tracking-wider text-white mb-4">Quick Links</h4>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li><a href="#" className="hover:text-white transition-colors">Full Menu</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Samosas</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Biryanis</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Curries</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-sm uppercase tracking-wider text-white mb-4">Help</h4>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li><a href="#" className="hover:text-white transition-colors">Delivery Info</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Returns Policy</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">FAQs</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Catering</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-sm uppercase tracking-wider text-white mb-4">Get in Touch</h4>
+            <ul className="space-y-3 text-sm text-gray-400">
+              <li className="flex gap-2 items-start">
+                <span>📍</span> <span>123 Food Street, Anarkali<br/>Lahore, Pakistan</span>
+              </li>
+              <li className="flex gap-2 items-center">
+                <span>📞</span> <span>+92 300 1234567</span>
+              </li>
+              <li className="flex gap-2 items-center">
+                <span>✉️</span> <span>hello@lahorisamosay.com</span>
+              </li>
+            </ul>
+          </div>
         </div>
-      </main>
+
+        <div className="max-w-7xl mx-auto pt-8 border-t border-[#4A3525] text-xs text-gray-500 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p>© 2026 Lahori Samosay. All rights reserved.</p>
+          <div className="flex gap-6">
+            <a href="#" className="hover:underline">Privacy</a>
+            <a href="#" className="hover:underline">Terms</a>
+            <a href="#" className="hover:underline">Sitemap</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
