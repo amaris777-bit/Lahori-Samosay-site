@@ -36,7 +36,7 @@ const dishes = [
   }
 ];
 
-export default function RestaurantMenu() {
+export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#FFFDF9] text-[#2C1A11]">
       {/* Header */}
