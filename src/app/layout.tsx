@@ -12,7 +12,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <head>
+        {/* This injects Tailwind CSS into our raw browser build */}
+        <script src="https://cdn.tailwindcss.com"></script>
+      </head>
+      <body>
+        {children}
+      </body>
     </html>
   );
 }
